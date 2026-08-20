@@ -1,7 +1,7 @@
+import { Link } from "@tanstack/react-router";
 import { X } from "lucide-react";
+import { menuLinks } from "./nav-links";
 import logoDark from "@/assets/logo-dark.png.asset.json";
-
-const links = ["New In", "Women", "Men", "Outerwear", "About"];
 
 interface MobileMenuProps {
   open: boolean;
@@ -28,17 +28,27 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         </button>
       </div>
       <nav className="flex flex-col px-6 pt-6" aria-label="Mobile">
-        {links.map((link, i) => (
-          <a
-            key={link}
-            href="#best-sellers"
+        {menuLinks.map((link, i) => (
+          <Link
+            key={link.category}
+            to="/shop/$category"
+            params={{ category: link.category }}
             onClick={onClose}
             className="border-b border-hairline py-5 font-display text-3xl font-medium tracking-tight text-ink transition-opacity hover:opacity-60"
             style={{ transitionDelay: `${i * 30}ms` }}
           >
-            {link}
-          </a>
+            {link.label}
+          </Link>
         ))}
+        <Link
+          to="/"
+          hash="story"
+          onClick={onClose}
+          className="border-b border-hairline py-5 font-display text-3xl font-medium tracking-tight text-ink transition-opacity hover:opacity-60"
+          style={{ transitionDelay: `${menuLinks.length * 30}ms` }}
+        >
+          About
+        </Link>
       </nav>
     </div>
   );
