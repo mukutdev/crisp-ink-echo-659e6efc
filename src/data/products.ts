@@ -9,6 +9,8 @@ import p8 from "@/assets/products/p8.jpg";
 
 export type Category = "tops" | "bottoms" | "outerwear";
 
+export type Gender = "women" | "men" | "unisex";
+
 export interface Swatch {
   name: string;
   /** grayscale tone used for the swatch dot */
@@ -20,6 +22,7 @@ export interface Product {
   name: string;
   price: number;
   category: Category;
+  gender: Gender;
   isNew: boolean;
   /** base tone for the primary placeholder image */
   tone: string;
@@ -119,6 +122,7 @@ export const products: Product[] = [
     name: "Aramid Shell Jacket",
     price: 420,
     category: "outerwear",
+    gender: "men",
     isNew: true,
     tone: "oklch(0.78 0.004 90)",
     hoverTone: "oklch(0.4 0.004 90)",
@@ -133,6 +137,7 @@ export const products: Product[] = [
     name: "Technical Crew Knit",
     price: 185,
     category: "tops",
+    gender: "women",
     isNew: true,
     tone: "oklch(0.83 0.004 90)",
     hoverTone: "oklch(0.62 0.004 90)",
@@ -146,6 +151,7 @@ export const products: Product[] = [
     name: "Field Cargo Trouser",
     price: 240,
     category: "bottoms",
+    gender: "men",
     isNew: true,
     tone: "oklch(0.6 0.004 90)",
     hoverTone: "oklch(0.35 0.004 90)",
@@ -159,6 +165,7 @@ export const products: Product[] = [
     name: "Sealed Mac Coat",
     price: 510,
     category: "outerwear",
+    gender: "women",
     isNew: true,
     tone: "oklch(0.5 0.004 90)",
     hoverTone: "oklch(0.72 0.004 90)",
@@ -172,6 +179,7 @@ export const products: Product[] = [
     name: "Boxy Pocket Tee",
     price: 95,
     category: "tops",
+    gender: "unisex",
     isNew: true,
     tone: "oklch(0.9 0.004 90)",
     hoverTone: "oklch(0.55 0.004 90)",
@@ -186,6 +194,7 @@ export const products: Product[] = [
     name: "Tapered Wool Pant",
     price: 265,
     category: "bottoms",
+    gender: "men",
     isNew: true,
     tone: "oklch(0.4 0.004 90)",
     hoverTone: "oklch(0.6 0.004 90)",
@@ -199,6 +208,7 @@ export const products: Product[] = [
     name: "Insulated Liner Vest",
     price: 195,
     category: "outerwear",
+    gender: "women",
     isNew: true,
     tone: "oklch(0.7 0.004 90)",
     hoverTone: "oklch(0.45 0.004 90)",
@@ -212,6 +222,7 @@ export const products: Product[] = [
     name: "Ribbed Mock Layer",
     price: 145,
     category: "tops",
+    gender: "unisex",
     isNew: true,
     tone: "oklch(0.55 0.004 90)",
     hoverTone: "oklch(0.8 0.004 90)",
@@ -234,4 +245,70 @@ export const tabs: { key: TabKey; label: string }[] = [
 export function filterProducts(tab: TabKey): Product[] {
   if (tab === "new") return products.filter((p) => p.isNew);
   return products.filter((p) => p.category === tab);
+}
+
+/* ---------- Archives (collection pages) ---------- */
+
+export interface Archive {
+  slug: string;
+  title: string;
+  description: string;
+}
+
+export const archives: Archive[] = [
+  {
+    slug: "new-in",
+    title: "New In",
+    description:
+      "The latest arrivals — considered technical pieces in a quiet monochrome palette.",
+  },
+  {
+    slug: "women",
+    title: "Women",
+    description:
+      "Technical apparel for women — cut for movement, built to outlast the season.",
+  },
+  {
+    slug: "men",
+    title: "Men",
+    description:
+      "Technical apparel for men — cut for movement, built to outlast the season.",
+  },
+  {
+    slug: "outerwear",
+    title: "Outerwear",
+    description:
+      "Shells, coats, and liners engineered for the elements.",
+  },
+  {
+    slug: "tops",
+    title: "Tops",
+    description: "Knits, tees, and layers — the foundation of the system.",
+  },
+  {
+    slug: "bottoms",
+    title: "Bottoms",
+    description: "Trousers and pants cut for movement and built to last.",
+  },
+];
+
+export function getArchive(slug: string): Archive | undefined {
+  return archives.find((a) => a.slug === slug);
+}
+
+export function getArchiveProducts(slug: string): Product[] {
+  switch (slug) {
+    case "new-in":
+      return products.filter((p) => p.isNew);
+    case "women":
+      return products.filter((p) => p.gender !== "men");
+    case "men":
+      return products.filter((p) => p.gender !== "women");
+    case "tops":
+    case "bottoms":
+    case "outerwear":
+      return products.filter((p) => p.category === slug);
+    default:
+      return [];
+  }
 }

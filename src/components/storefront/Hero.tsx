@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import heroImage from "@/assets/hero.jpg";
 
 export function Hero() {
@@ -31,12 +32,13 @@ export function Hero() {
 
       {/* Frosted glass pill CTAs */}
       <div className="absolute bottom-16 left-1/2 flex -translate-x-1/2 flex-wrap items-center justify-center gap-3">
-        <a
-          href="#best-sellers"
+        <Link
+          to="/shop/$category"
+          params={{ category: "new-in" }}
           className="rounded-full border border-paper/30 bg-paper/15 px-7 py-3 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-paper backdrop-blur-md transition-colors hover:bg-paper/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"
         >
           Shop New In
-        </a>
+        </Link>
         <a
           href="#story"
           className="rounded-full border border-paper/30 bg-paper/15 px-7 py-3 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-paper backdrop-blur-md transition-colors hover:bg-paper/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-paper"

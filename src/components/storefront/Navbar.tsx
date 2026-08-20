@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Search, User, ShoppingBag, Menu } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { MobileMenu } from "./MobileMenu";
+import { menuLinks } from "./nav-links";
 import logoDark from "@/assets/logo-dark.png.asset.json";
 import logoLight from "@/assets/logo.avif.asset.json";
-
-const links = ["New In", "Women", "Men", "Outerwear", "About"];
 
 export function Navbar({ solid = false }: { solid?: boolean }) {
   const { count } = useCart();
@@ -33,27 +33,39 @@ export function Navbar({ solid = false }: { solid?: boolean }) {
         className="mx-auto grid w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-6 py-4 md:px-12"
         aria-label="Primary"
       >
-        <a href="#top" className="flex items-center" aria-label="Deepstrike home">
+        <Link to="/" className="flex items-center" aria-label="Deepstrike home">
           <img
             src={scrolled ? logoDark.url : logoLight.url}
             alt="Deepstrike"
             className="h-7 w-auto md:h-9"
           />
-        </a>
+        </Link>
 
         <ul className="hidden items-center justify-center gap-10 md:flex">
-          {links.map((link) => (
-            <li key={link}>
-              <a
-                href="#best-sellers"
+          {menuLinks.map((link) => (
+            <li key={link.category}>
+              <Link
+                to="/shop/$category"
+                params={{ category: link.category }}
                 className={`eyebrow text-[0.9rem] transition-colors ${
                   scrolled ? "text-ink/80 hover:text-ink" : "text-paper/90 hover:text-paper"
                 }`}
               >
-                {link}
-              </a>
+                {link.label}
+              </Link>
             </li>
           ))}
+          <li>
+            <Link
+              to="/"
+              hash="story"
+              className={`eyebrow text-[0.9rem] transition-colors ${
+                scrolled ? "text-ink/80 hover:text-ink" : "text-paper/90 hover:text-paper"
+              }`}
+            >
+              About
+            </Link>
+          </li>
         </ul>
 
         <div className={`flex items-center justify-end gap-1.5 ${scrolled ? "text-ink" : "text-paper"}`}>

@@ -1,11 +1,12 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import womenImg from "@/assets/sections/women.jpg";
 import menImg from "@/assets/sections/men.jpg";
 
 const tiles = [
-  { label: "Women", image: womenImg },
-  { label: "Men", image: menImg },
+  { label: "Women", image: womenImg, category: "women" },
+  { label: "Men", image: menImg, category: "men" },
 ];
 
 export function CategoryTiles() {
@@ -14,8 +15,9 @@ export function CategoryTiles() {
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:gap-6">
         {tiles.map((tile, i) => (
           <Reveal key={tile.label} delay={i * 100}>
-            <a
-              href="#best-sellers"
+            <Link
+              to="/shop/$category"
+              params={{ category: tile.category }}
               className="group relative block aspect-[4/5] overflow-hidden rounded-sm sm:aspect-[3/4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
             >
               <img
@@ -35,7 +37,7 @@ export function CategoryTiles() {
                   strokeWidth={1.5}
                 />
               </div>
-            </a>
+            </Link>
           </Reveal>
         ))}
       </div>
