@@ -1,6 +1,6 @@
 /**
- * Shared primary navigation. Archive entries map to /shop/$category;
- * "About" scrolls to the brand story on the home page.
+ * Shared primary navigation. Archive entries map to /shop/$category.
+ * "About" and "Contact" are standalone routes.
  */
 export const menuLinks = [
   { label: "New In", category: "new-in" },

@@ -57,13 +57,22 @@ export function Navbar({ solid = false }: { solid?: boolean }) {
           ))}
           <li>
             <Link
-              to="/"
-              hash="story"
+              to="/about"
               className={`eyebrow text-[0.9rem] transition-colors ${
                 scrolled ? "text-ink/80 hover:text-ink" : "text-paper/90 hover:text-paper"
               }`}
             >
               About
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              className={`eyebrow text-[0.9rem] transition-colors ${
+                scrolled ? "text-ink/80 hover:text-ink" : "text-paper/90 hover:text-paper"
+              }`}
+            >
+              Contact
             </Link>
           </li>
         </ul>
