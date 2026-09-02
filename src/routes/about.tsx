@@ -58,11 +58,11 @@ function AboutPage() {
         <main>
           {/* Hero */}
           <section className="relative overflow-hidden border-b border-hairline">
-            <div className="px-6 pb-20 pt-32 md:px-12 md:pb-32 md:pt-48">
-              <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+            <div className="px-6 pb-16 pt-24 md:px-12 md:pb-24 md:pt-36">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-10">
                 <div className="md:col-span-7">
                   <Reveal>
-                    <p className="eyebrow mb-6 text-[0.65rem] text-stone">About Deep Strike</p>
+                    <p className="eyebrow mb-4 text-[0.65rem] text-stone">About Deep Strike</p>
                   </Reveal>
                   <Reveal delay={80}>
                     <h1 className="font-display text-5xl font-semibold leading-[0.9] tracking-tight md:text-7xl lg:text-[5.5rem]">
