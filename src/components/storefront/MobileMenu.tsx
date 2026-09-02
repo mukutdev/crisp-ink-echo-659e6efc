@@ -41,13 +41,20 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           </Link>
         ))}
         <Link
-          to="/"
-          hash="story"
+          to="/about"
           onClick={onClose}
           className="border-b border-hairline py-5 font-display text-3xl font-medium tracking-tight text-ink transition-opacity hover:opacity-60"
           style={{ transitionDelay: `${menuLinks.length * 30}ms` }}
         >
           About
+        </Link>
+        <Link
+          to="/contact"
+          onClick={onClose}
+          className="border-b border-hairline py-5 font-display text-3xl font-medium tracking-tight text-ink transition-opacity hover:opacity-60"
+          style={{ transitionDelay: `${(menuLinks.length + 1) * 30}ms` }}
+        >
+          Contact
         </Link>
       </nav>
     </div>
