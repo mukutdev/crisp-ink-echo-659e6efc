@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { CartProvider } from "@/context/CartContext";
 import { Navbar } from "@/components/storefront/Navbar";
 import { Footer } from "@/components/storefront/Footer";
 import { Reveal } from "@/components/storefront/Reveal";
@@ -45,6 +46,7 @@ const values = [
 
 function AboutPage() {
   return (
+    <CartProvider>
     <div className="min-h-screen bg-paper text-ink">
       <Navbar solid />
 
@@ -182,5 +184,6 @@ function AboutPage() {
 
       <Footer />
     </div>
+    </CartProvider>
   );
 }

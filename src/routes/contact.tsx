@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
+import { CartProvider } from "@/context/CartContext";
 import { Navbar } from "@/components/storefront/Navbar";
 import { Footer } from "@/components/storefront/Footer";
 import { Reveal } from "@/components/storefront/Reveal";
@@ -245,5 +246,6 @@ function ContactPage() {
 
       <Footer />
     </div>
+    </CartProvider>
   );
 }
